@@ -3,18 +3,18 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    return <AuthContext.Provider>{ children }</AuthContext.Provider>
+    
     const [user, setUser] = useState;
 
     useEffect (() =>{
         const userToken = localStorage.getItem("user_token");
-        const usersStorege = localStorage.getItem("users_db");
+        const usersStorage = localStorage.getItem("users_db");
 
         if (userToken && usersStorage) {
             const hasUser = JSON.parse(userToken)?.filter(
                 (user) => user.email === JSON.parse(userToken).email
             );
-            if (hasUser) sertUser(hasUser[0]);
+            if (hasUser) setUser(hasUser[0]);
         }
     }, []);
 
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         if (hasUser?.length) {
             if (hasUser[0].email === email && hasUser[0].password === password) {
             const token = Math.random().toString(36).substring(2);
-        localStorage.setItem("user_token", Json.stringify({emal, token}));
+            localStorage.setItem("user_token", JSON.stringify({ email, token }));
             setUser({ email, password });
             return;
             } else {
@@ -36,6 +36,5 @@ export const AuthProvider = ({ children }) => {
             return "Usuário não cadastrado";
         }
     };
-}
     return <AuthContext.Provider>{ children }</AuthContext.Provider>
 };

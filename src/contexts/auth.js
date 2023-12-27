@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
         const usersStorage = localStorage.getItem("users_db");
 
         if (userToken && usersStorage) {
-            const hasUser = JSON.parse(userToken)?.filter(
+            const hasUser = JSON.parse(usersStorage)?.filter(
                 (user) => user.email === JSON.parse(userToken).email
             );
             if (hasUser) setUser(hasUser[0]);
@@ -65,9 +65,9 @@ export const AuthProvider = ({ children }) => {
 
     return (
     <AuthContext.Provider
-    value={{ user, signed: !!user, signin, signup, signout }}
+        value={{ user, signed: !!user, signin, signup, signout }}
     >
-        { children }
+        {children}
     </AuthContext.Provider>
     );
 };

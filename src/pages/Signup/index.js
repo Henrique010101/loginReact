@@ -12,18 +12,18 @@ const Signup = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { Signup } = useAuth();
+    const { signup } = useAuth();
 
     const handleSignup = () => {
         if (!email | !emailConf | !senha) {
             setError("Preencha todos os campos");
             return;
-        } else if (email !== senha){
-        setError("Os e-mails não são iguais");
-        return;
+        } else if (email !== emailConf){
+            setError("Os e-mails não são iguais");
+            return;
         }
 
-    const res = Signup(email, senha);
+    const res = signup(email, senha);
 
         if (res) {
         setError(res);
@@ -61,7 +61,7 @@ const Signup = () => {
             <C.LabelSignin>
                 Já tem uma conta?
                 <C.Strong>
-                    <Link to="/">$nbsp;Entre</Link>
+                    <Link to="/">&nbsp;Entre</Link>
                 </C.Strong>
             </C.LabelSignin>
             </C.Content>

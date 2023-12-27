@@ -8,7 +8,7 @@ border-radius: 5px;
 width: 100%;
 cursor: pointer;
 background-color: #046ee5;
-color: white
+color: white;
 font-weght: 600;
 font-size: 16px;
 max-width: 350px;

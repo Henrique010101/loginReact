@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as C from "./style"
 import Input from "../../components/input";
-import Button from "../../components/button";
+import Button from "../../components/button/index";
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../../hooks/useAuth";
 
@@ -14,18 +14,20 @@ const Signin = () => {
     const [error, setError] = useState("");
 
     const handleLogin = () => {
-        if (!email | !senha) {
-            setError("Preencha todos os campos");
-            return;
+        if (!email || !senha) {
+          setError("Preencha todos os campos");
+          return;
         }
+    
         const res = signin(email, senha);
-        if (res){
-            setError(res);
-            return;
+    
+        if (res) {
+          setError(res);
+          return;
         }
-
-        navigate("./home");
-    }
+    
+        navigate("/home");
+      };
     
     return (
         <C.Container>
@@ -44,7 +46,7 @@ const Signin = () => {
                 onChange={(e) => [setSenha(e.target.value), setError("")]}
                 />
                 <C.labelError>{error}</C.labelError>
-                <Button Text="Entrar" onClick={handleLogin}/>
+                <Button Text="Entrar" onClick={handleLogin} />
                 <C.LabelSignup>
                     Não tem uma conta?
                     <C.Strong>
